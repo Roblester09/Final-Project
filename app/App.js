@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import Authentication from './scenes/Authentication'
+import Login from './scenes/Authentication/Login'
+import Register from './scenes/Authentication/Register'
+import Profile from './scenes/Profile'
 
 export default class App extends Component {
 
     render() {
         return (
-            <Authentication />
+            //*<Login />*/
+            // <Register />
+            <Profile />
         );
     }
 }
