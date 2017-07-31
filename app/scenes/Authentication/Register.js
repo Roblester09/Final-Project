@@ -14,11 +14,6 @@ import ViewContainer from '../../components/ViewContainer'
 import StatusbarBackground from '../../components/StatusbarBackground'
 import { styles } from './styles'
 
-// import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk'
-// import firebase from 'firebase'
-// import firebaseConfig from './app/services/firebase'
-// import Icon from 'react-native-vector-icons/FontAwesome';
-
 export default class Register extends Component {
 
     constructor(props) {

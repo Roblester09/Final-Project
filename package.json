@@ -13,6 +13,7 @@
 		"react-native-facebook-login": "^1.5.0",
 		"react-native-fbsdk": "^0.6.0",
 		"react-native-fontawesome": "^5.7.0",
+		"react-native-pagecontrol": "^3.0.1",
 		"react-native-svg": "^5.3.0",
 		"react-native-svg-uri": "^1.2.0",
 		"react-native-vector-icons": "^4.2.0",

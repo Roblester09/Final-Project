@@ -82,8 +82,8 @@ export default class Login extends Component {
                 />
                 {/*<Icon name='facebook-official' size={50} color='blue' style={styles.icon}/>*/}
                 {/*<Button*/}
-                {/*onPress={this._fbAuth}*/}
-                {/*title='Login with Facebook'*/}
+                    {/*onPress={this._fbAuth}*/}
+                    {/*title='Login with Facebook'*/}
                 {/*/>*/}
 
                 <View style={styles.login}>
