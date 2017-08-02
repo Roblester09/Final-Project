@@ -11,6 +11,7 @@ import PageControlIOS from 'react-native-pagecontrol'
 import ViewContainer from '../../components/ViewContainer'
 import StatusbarBackground from '../../components/StatusbarBackground'
 import Profile from '../Profile'
+import Discover from '../Discover/Discover'
 
 const window = Dimensions.get('window');
 
@@ -53,7 +54,7 @@ export default class PageControl extends Component {
                         showsHorizontalScrollIndicator={false}
                     >
                         <View style={styles.scrollScene}>
-                            <Profile />
+                            <Discover />
                         </View>
                         <View style={styles.scrollScene}>
                             <Profile />

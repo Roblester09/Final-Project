@@ -12,6 +12,8 @@ import {
 
 import ViewContainer from '../../components/ViewContainer'
 import StatusbarBackground from '../../components/StatusbarBackground'
+import { firebaseRef } from '../../services/firebase'
+import { Actions } from 'react-native-router-flux'
 import { styles } from './styles'
 
 export default class Register extends Component {
@@ -21,7 +23,24 @@ export default class Register extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            verifyPassword: ''
+        };
+
+        this._register = this._register.bind(this);
+    }
+
+    _register() {
+        if(this.state.password == this.state.verifyPassword) {
+            firebaseRef.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+                // Handle errors here
+                console.log(error.code);
+                console.log(error.message);
+            });
+
+            Actions.pagecontrol();
+        } else {
+            console.log("Passwords did not match.");
         }
     }
 
@@ -34,8 +53,9 @@ export default class Register extends Component {
                 </View>
                 <TextInput
                     style={styles.textInput}
-                    onChange={(text) => this.setState({email: text})}
+                    onChangeText={(text) => this.setState({email: text})}
                     value={this.state.email}
+                    autoCapitalize='none'
                     placeholder='EMAIL'
                     placeholderTextColor='black'
                     autoCorrect={false}
@@ -44,8 +64,9 @@ export default class Register extends Component {
                 />
                 <TextInput
                     style={styles.textInput}
-                    onChange={(text) => this.setState({password: text})}
+                    onChangeText={(text) => this.setState({password: text})}
                     value={this.state.password}
+                    autoCapitalize='none'
                     placeholder='PASSWORD'
                     placeholderTextColor= 'black'
                     secureTextEntry={true}
@@ -55,8 +76,9 @@ export default class Register extends Component {
                 />
                 <TextInput
                     style={styles.textInput}
-                    onChange={(text) => this.setState({password: text})}
-                    value={this.state.password}
+                    onChangeText={(text) => this.setState({verifyPassword: text})}
+                    value={this.state.verifyPassword}
+                    autoCapitalize='none'
                     placeholder='PASSWORD'
                     placeholderTextColor= 'black'
                     secureTextEntry={true}
@@ -66,7 +88,7 @@ export default class Register extends Component {
                 />
 
                 <View style={styles.login}>
-                    <TouchableOpacity style={styles.loginButton}>
+                    <TouchableOpacity style={styles.loginButton} onPress={this._register}>
                         <Text style={styles.loginButtonText}>CREATE ACCOUNT</Text>
                     </TouchableOpacity>
                 </View>

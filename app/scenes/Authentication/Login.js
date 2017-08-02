@@ -12,7 +12,9 @@ import {
 
 import ViewContainer from '../../components/ViewContainer'
 import StatusbarBackground from '../../components/StatusbarBackground'
+import { firebaseRef } from '../../services/firebase'
 import { styles } from './styles'
+import { Actions } from 'react-native-router-flux'
 
 // import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk'
 // import firebase from 'firebase'
@@ -48,8 +50,30 @@ export default class Login extends Component {
 
         this.state = {
             email: '',
-            password: ''
-        }
+            password: '',
+            status: ''
+        };
+
+        this._login = this._login.bind(this);
+        this._register = this._register.bind(this);
+    }
+
+    _login() {
+        firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+            // Handle errors here
+            console.log(error.code);
+            console.log(error.message);
+        });
+
+        Actions.pagecontrol();
+    }
+
+    _register() {
+        Actions.register()
+    }
+
+    _onFocus() {
+
     }
 
     render() {
@@ -61,21 +85,24 @@ export default class Login extends Component {
                 </View>
                 <TextInput
                     style={styles.textInput}
-                    onChange={(text) => this.setState({email: text})}
+                    autoCapitalize='none'
+                    onChangeText={(text) => this.setState({email: text})}
                     value={this.state.email}
                     placeholder='EMAIL'
                     placeholderTextColor='black'
                     autoCorrect={false}
+                    onFocus={this.onFocus}
                     returnKeyType='next'
                     keyboardAppearance='dark'
                 />
                 <TextInput
                     style={styles.textInput}
-                    onChange={(text) => this.setState({password: text})}
+                    onChangeText={(text) => this.setState({password: text})}
                     value={this.state.password}
                     placeholder='PASSWORD'
                     placeholderTextColor= 'black'
                     secureTextEntry={true}
+                    autoCapitalize='none'
                     autoCorrect={false}
                     returnKeyType='go'
                     keyboardAppearance='dark'
@@ -87,12 +114,12 @@ export default class Login extends Component {
                 {/*/>*/}
 
                 <View style={styles.login}>
-                    <TouchableOpacity style={styles.loginButton}>
+                    <TouchableOpacity style={styles.loginButton} onPress={this._login}>
                         <Text style={styles.loginButtonText}>LOG IN</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.register}>
-                    <TouchableOpacity style={styles.registerButton}>
+                    <TouchableOpacity style={styles.registerButton} onPress={this._register}>
                         <Text style={styles.registerButtonText}>create account</Text>
                     </TouchableOpacity>
                 </View>
