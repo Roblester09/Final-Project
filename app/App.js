@@ -18,7 +18,8 @@ export default class App extends Component {
                 style={styles.navigationContainer}
                 initialRoute={{
                     component: Login,
-                    title: 'Login'
+                    title: 'Login',
+                    navigationBarHidden: true
                 }}
                 renderScene={ this.renderScene }
             />

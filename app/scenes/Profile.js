@@ -27,10 +27,10 @@ export default class Profile extends Component {
                 <StatusbarBackground />
 
                 <View style={styles.container}>
-                    <ScrollView automaticallyAdjustContentInsets={false} showsVerticalScrollIndicator={false}>
                         <View style={styles.imageContainer}>
-                            <Image source={{uri: this.props.image}} style={styles.image} />
+                            <Image source={{uri: this.props.image}} style={styles.image} resizeMode="contain"/>
                         </View>
+                    <ScrollView style={styles.colorContainer} automaticallyAdjustContentInsets={false} showsVerticalScrollIndicator={false}>
                         <View style={styles.textContainer}>
                             <Text style={styles.title}>
                                 {this.props.title}
@@ -58,21 +58,25 @@ const styles = StyleSheet.create({
         marginTop: 40,
         height: 300
     },
+    colorContainer: {
+        backgroundColor: 'white'
+    },
     textContainer: {
         margin: 20
     },
     title:{
         fontSize:23,
-        color: '#007AFF'
+        color: '#F0141E'
     },
     description:{
         marginTop:10,
         fontSize: 12,
     },
     image: {
-        alignSelf: 'auto',
+        alignSelf: 'center',
         height: 300,
-        width: 600
+        width: 600,
+        backgroundColor: 'black'
     },
     readButton: {
         marginTop: 10,
@@ -80,10 +84,12 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         overflow: 'hidden',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'black'
     },
     readButtonText: {
         textAlign: 'center',
-        padding: 10
+        padding: 10,
+        color: 'white'
     }
 });

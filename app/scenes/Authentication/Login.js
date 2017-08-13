@@ -69,9 +69,10 @@ export default class Login extends Component {
 
         this.props.navigator.push({
             component: Discover,
-            title: 'Discover Comics'
+            title: 'Browse',
+            navigationBarHidden: true
         });
-    }
+    };
 
     _register = () => {
         this.props.navigator.push({
@@ -88,9 +89,9 @@ export default class Login extends Component {
         return (
             <ViewContainer>
                 <StatusbarBackground />
-                <View style={styles.viewContainer}>
+                <Image source={require('../../resources/portrait.jpg')} style={styles.viewImage}>
                     <View style={styles.logo}>
-                        <Image style={{width: 258, height: 150}} source={require('../../resources/Logo.jpg')}/>
+                        <Image style={{width: 258, height: 192}} source={require('../../resources/Logo.jpg')}/>
                     </View>
                     <TextInput
                         style={styles.textInput}
@@ -98,7 +99,7 @@ export default class Login extends Component {
                         onChangeText={(text) => this.setState({email: text})}
                         value={this.state.email}
                         placeholder='EMAIL'
-                        placeholderTextColor='black'
+                        placeholderTextColor='white'
                         autoCorrect={false}
                         onFocus={this.onFocus}
                         returnKeyType='next'
@@ -109,7 +110,7 @@ export default class Login extends Component {
                         onChangeText={(text) => this.setState({password: text})}
                         value={this.state.password}
                         placeholder='PASSWORD'
-                        placeholderTextColor= 'black'
+                        placeholderTextColor= 'white'
                         secureTextEntry={true}
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -132,7 +133,7 @@ export default class Login extends Component {
                             <Text style={styles.registerButtonText}>create account</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
+                </Image>
             </ViewContainer>
         );
     }

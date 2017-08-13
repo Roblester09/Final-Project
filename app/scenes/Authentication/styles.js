@@ -1,8 +1,11 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
-    viewContainer:{
-        backgroundColor: 'white'
+    viewImage:{
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'stretch'
     },
     logo:{
         alignItems: 'center',
@@ -17,7 +20,7 @@ export const styles = StyleSheet.create({
     login: {
         paddingLeft: 20,
         paddingRight: 20,
-        marginTop: 80,
+        marginTop: 60,
         marginBottom: 40
     },
     loginButton: {
@@ -25,21 +28,29 @@ export const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         overflow: 'hidden',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'black'
     },
     loginButtonText: {
         textAlign: 'center',
-        padding: 10
+        padding: 10,
+        color: 'white'
     },
     registerButton: {
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'transparent'
+    },
+    registerButtonText: {
+        color: 'white'
     },
     textInput: {
         textAlignVertical: 'bottom',
         borderBottomWidth: 1,
+        borderBottomColor: 'white',
         marginLeft: 40,
         marginRight: 40,
-        marginTop: 20
+        marginTop: 20,
+        color: 'white'
     }
 
 });

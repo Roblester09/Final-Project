@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'stretch',
-        backgroundColor: '#F5F5F5'
+        backgroundColor: '#F0141E'
     }
 });

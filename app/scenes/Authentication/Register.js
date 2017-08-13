@@ -52,9 +52,9 @@ export default class Register extends Component {
         return (
             <ViewContainer>
                 <StatusbarBackground />
-                <View style={styles.viewContainer}>
+                <Image source={require('../../resources/portrait.jpg')} style={styles.viewImage}>
                     <View style={styles.logoReg}>
-                        <Image style={{width: 258, height: 150}} source={require('../../resources/Logo.jpg')}/>
+                        <Image style={{width: 258, height: 192}} source={require('../../resources/Logo.jpg')}/>
                     </View>
                     <TextInput
                         style={styles.textInput}
@@ -62,7 +62,7 @@ export default class Register extends Component {
                         value={this.state.email}
                         autoCapitalize='none'
                         placeholder='EMAIL'
-                        placeholderTextColor='black'
+                        placeholderTextColor='white'
                         autoCorrect={false}
                         returnKeyType='next'
                         keyboardAppearance='dark'
@@ -73,7 +73,7 @@ export default class Register extends Component {
                         value={this.state.password}
                         autoCapitalize='none'
                         placeholder='PASSWORD'
-                        placeholderTextColor= 'black'
+                        placeholderTextColor= 'white'
                         secureTextEntry={true}
                         autoCorrect={false}
                         returnKeyType='go'
@@ -85,7 +85,7 @@ export default class Register extends Component {
                         value={this.state.verifyPassword}
                         autoCapitalize='none'
                         placeholder='PASSWORD'
-                        placeholderTextColor= 'black'
+                        placeholderTextColor= 'white'
                         secureTextEntry={true}
                         autoCorrect={false}
                         returnKeyType='go'
@@ -97,7 +97,7 @@ export default class Register extends Component {
                             <Text style={styles.loginButtonText}>CREATE ACCOUNT</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
+                </Image>
             </ViewContainer>
         );
     }
