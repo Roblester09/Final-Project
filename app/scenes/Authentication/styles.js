@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
+    viewContainer:{
+        backgroundColor: 'white'
+    },
     logo:{
         alignItems: 'center',
         marginTop: 120,

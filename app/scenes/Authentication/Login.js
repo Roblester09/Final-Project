@@ -7,14 +7,16 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    Button
+    Button,
+    NavigatorIOS
 } from 'react-native';
 
 import ViewContainer from '../../components/ViewContainer'
 import StatusbarBackground from '../../components/StatusbarBackground'
+import Register from './Register'
+import Discover from '../Discover/Discover'
 import { firebaseRef } from '../../services/firebase'
 import { styles } from './styles'
-import { Actions } from 'react-native-router-flux'
 
 // import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk'
 // import firebase from 'firebase'
@@ -58,19 +60,25 @@ export default class Login extends Component {
         this._register = this._register.bind(this);
     }
 
-    _login() {
+    _login = () => {
         firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
             // Handle errors here
             console.log(error.code);
             console.log(error.message);
         });
 
-        Actions.pagecontrol();
+        this.props.navigator.push({
+            component: Discover,
+            title: 'Discover Comics'
+        });
     }
 
-    _register() {
-        Actions.register()
-    }
+    _register = () => {
+        this.props.navigator.push({
+            component: Register,
+            title: 'Register'
+        });
+    };
 
     _onFocus() {
 
@@ -80,48 +88,50 @@ export default class Login extends Component {
         return (
             <ViewContainer>
                 <StatusbarBackground />
-                <View style={styles.logo}>
-                    <Image style={{width: 258, height: 150}} source={require('../../resources/Logo.jpg')}/>
-                </View>
-                <TextInput
-                    style={styles.textInput}
-                    autoCapitalize='none'
-                    onChangeText={(text) => this.setState({email: text})}
-                    value={this.state.email}
-                    placeholder='EMAIL'
-                    placeholderTextColor='black'
-                    autoCorrect={false}
-                    onFocus={this.onFocus}
-                    returnKeyType='next'
-                    keyboardAppearance='dark'
-                />
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={(text) => this.setState({password: text})}
-                    value={this.state.password}
-                    placeholder='PASSWORD'
-                    placeholderTextColor= 'black'
-                    secureTextEntry={true}
-                    autoCapitalize='none'
-                    autoCorrect={false}
-                    returnKeyType='go'
-                    keyboardAppearance='dark'
-                />
-                {/*<Icon name='facebook-official' size={50} color='blue' style={styles.icon}/>*/}
-                {/*<Button*/}
+                <View style={styles.viewContainer}>
+                    <View style={styles.logo}>
+                        <Image style={{width: 258, height: 150}} source={require('../../resources/Logo.jpg')}/>
+                    </View>
+                    <TextInput
+                        style={styles.textInput}
+                        autoCapitalize='none'
+                        onChangeText={(text) => this.setState({email: text})}
+                        value={this.state.email}
+                        placeholder='EMAIL'
+                        placeholderTextColor='black'
+                        autoCorrect={false}
+                        onFocus={this.onFocus}
+                        returnKeyType='next'
+                        keyboardAppearance='dark'
+                    />
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={(text) => this.setState({password: text})}
+                        value={this.state.password}
+                        placeholder='PASSWORD'
+                        placeholderTextColor= 'black'
+                        secureTextEntry={true}
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                        returnKeyType='go'
+                        keyboardAppearance='dark'
+                    />
+                    {/*<Icon name='facebook-official' size={50} color='blue' style={styles.icon}/>*/}
+                    {/*<Button*/}
                     {/*onPress={this._fbAuth}*/}
                     {/*title='Login with Facebook'*/}
-                {/*/>*/}
+                    {/*/>*/}
 
-                <View style={styles.login}>
-                    <TouchableOpacity style={styles.loginButton} onPress={this._login}>
-                        <Text style={styles.loginButtonText}>LOG IN</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.register}>
-                    <TouchableOpacity style={styles.registerButton} onPress={this._register}>
-                        <Text style={styles.registerButtonText}>create account</Text>
-                    </TouchableOpacity>
+                    <View style={styles.login}>
+                        <TouchableOpacity style={styles.loginButton} onPress={this._login}>
+                            <Text style={styles.loginButtonText}>LOG IN</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.register}>
+                        <TouchableOpacity style={styles.registerButton} onPress={this._register}>
+                            <Text style={styles.registerButtonText}>create account</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ViewContainer>
         );

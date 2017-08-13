@@ -44,7 +44,6 @@ export default class PageControl extends Component {
         return (
             <ViewContainer>
                 <StatusbarBackground />
-
                 <View style={styles.scrollViewContainer}>
                     <ScrollView
                         horizontal={true}

@@ -7,7 +7,9 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    Button
+    Button,
+    ScrollView,
+    Linking
 } from 'react-native';
 
 import ViewContainer from '../components/ViewContainer'
@@ -15,50 +17,32 @@ import StatusbarBackground from '../components/StatusbarBackground'
 
 export default class Profile extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <ViewContainer>
                 <StatusbarBackground />
 
-                <View style={styles.profilePicture}>
-                    <View style={styles.profilePictureBorder}>
-                        <Image source={require('../resources/profilePic.jpg')} />
-                    </View>
-                </View>
-
-                <View style={styles.profileName}>
-                    <Text style={styles.profileNameText}>ROBERT LESTER</Text>
-                </View>
-
-                <View style={styles.profilesDescription}>
-                    <Text style={styles.profilesDescriptionText}>First Line</Text>
-                    <Text style={styles.profilesDescriptionText}>Second Line Second Line Second Line</Text>
-                    <Text style={styles.profilesDescriptionText}>Third Line Third Line</Text>
-                </View>
-
-                <View style={styles.personalDescription}>
-                    <View style={styles.columnOne}>
-                        <Text style={styles.personalDescriptionText}>
-                            ipsum ipsum ipsum
-                        </Text>
-                        <Text style={styles.personalDescriptionText}>
-                            ipsum ipsum ipsum
-                        </Text>
-                        <Text style={styles.personalDescriptionText}>
-                            ipsum ipsum ipsum
-                        </Text>
-                    </View>
-                    <View style={styles.columnTwo}>
-                        <Text style={styles.personalDescriptionText}>
-                            ipsum ipsum
-                        </Text>
-                        <Text style={styles.personalDescriptionText}>
-                            ipsum ipsum
-                        </Text>
-                        <Text style={styles.personalDescriptionText}>
-                            ipsum ipsum
-                        </Text>
-                    </View>
+                <View style={styles.container}>
+                    <ScrollView automaticallyAdjustContentInsets={false} showsVerticalScrollIndicator={false}>
+                        <View style={styles.imageContainer}>
+                            <Image source={{uri: this.props.image}} style={styles.image} />
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.title}>
+                                {this.props.title}
+                            </Text>
+                            <Text style={styles.description}>
+                                {this.props.description}
+                            </Text>
+                            <TouchableOpacity style={styles.readButton} onPress={() => Linking.openURL(this.props.url)}>
+                                <Text style={styles.readButtonText}>Read More</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </ScrollView>
                 </View>
 
             </ViewContainer>
@@ -67,49 +51,39 @@ export default class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-    profilePicture: {
-        alignItems: 'center',
-        marginTop: 70
+    container: {
+        flex: 1
     },
-    profilePictureBorder: {
-        borderWidth: 1,
-        borderColor: 'black',
-        height: 200,
-        width: 200,
-        overflow: 'hidden'
+    imageContainer: {
+        marginTop: 40,
+        height: 300
     },
-    profileName: {
-        alignItems: 'center',
-        marginTop: 30,
-        marginBottom: 24
+    textContainer: {
+        margin: 20
     },
-    profileNameText: {
-        fontSize: 24,
-        color: 'blue'
+    title:{
+        fontSize:23,
+        color: '#007AFF'
     },
-    profilesDescription: {
-        alignItems: 'center',
-        marginBottom: 50,
-        paddingLeft: 35,
-        paddingRight: 35
-    },
-    profilesDescriptionText: {
-        fontSize: 12
-    },
-    personalDescription: {
-        flex: 1,
-        flexDirection: 'row'
-    },
-    personalDescriptionText: {
+    description:{
+        marginTop:10,
         fontSize: 12,
-        marginBottom: 30
     },
-    columnOne: {
-        flex: 1,
-        paddingLeft: 50
+    image: {
+        alignSelf: 'auto',
+        height: 300,
+        width: 600
     },
-    columnTwo: {
-        flex: 1,
-        paddingLeft: 50
+    readButton: {
+        marginTop: 10,
+        borderWidth: 1,
+        height: 40,
+        borderRadius: 20,
+        overflow: 'hidden',
+        alignItems: 'center'
+    },
+    readButtonText: {
+        textAlign: 'center',
+        padding: 10
     }
 });
