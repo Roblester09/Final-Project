@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     },
     logo:{
         alignItems: 'center',
-        marginTop: 120,
+        marginTop: 100,
         marginBottom: 80
     },
     logoReg:{
@@ -20,28 +20,30 @@ export const styles = StyleSheet.create({
     login: {
         paddingLeft: 20,
         paddingRight: 20,
-        marginTop: 60,
+        marginTop: 40,
         marginBottom: 40
     },
     loginButton: {
         borderWidth: 1,
-        height: 40,
-        borderRadius: 20,
+        height: 60,
+        borderRadius: 30,
         overflow: 'hidden',
         alignItems: 'center',
         backgroundColor: 'black'
     },
     loginButtonText: {
         textAlign: 'center',
-        padding: 10,
-        color: 'white'
+        padding: 20,
+        color: 'white',
+        fontSize: 20
     },
     registerButton: {
         alignItems: 'center',
         backgroundColor: 'transparent'
     },
     registerButtonText: {
-        color: 'white'
+        color: 'white',
+        fontSize: 20
     },
     textInput: {
         textAlignVertical: 'bottom',
@@ -50,7 +52,8 @@ export const styles = StyleSheet.create({
         marginLeft: 40,
         marginRight: 40,
         marginTop: 20,
-        color: 'white'
+        color: 'white',
+        fontSize: 20
     }
 
 });

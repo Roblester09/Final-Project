@@ -54,7 +54,7 @@ export default class Discover extends Component {
         return (
             <ViewContainer>
                 <StatusbarBackground />
-                <ListView
+                <ListView style={styles.paddingList}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderComic}
                 />
@@ -65,7 +65,7 @@ export default class Discover extends Component {
     renderLoadingView() {
         return (
             <View style={styles.container}>
-                <Text>
+                <Text style={styles.loadingText}>
                     Loading comics...
                 </Text>
             </View>
@@ -113,13 +113,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 300
     },
+    loadingText: {
+        fontSize: 40
+    },
+    paddingList: {
+        paddingTop: 50,
+        paddingBottom: 70
+    },
     sectionContainer: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
-
+        marginTop: 5
 },
     comicContainer: {
         height: 200,

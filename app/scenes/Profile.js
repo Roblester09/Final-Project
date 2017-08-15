@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
         margin: 20
     },
     title:{
-        fontSize:23,
+        fontSize: 28,
         color: '#F0141E'
     },
     description:{
         marginTop:10,
-        fontSize: 12,
+        fontSize: 18,
     },
     image: {
         alignSelf: 'center',

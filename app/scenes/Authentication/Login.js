@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
     AppRegistry,
+    AsyncStorage,
     Text,
     View,
     TextInput,
@@ -8,9 +9,12 @@ import {
     Image,
     TouchableOpacity,
     Button,
-    NavigatorIOS
+    NavigatorIOS,
+    AlertIOS,
+    KeyboardAvoidingView
 } from 'react-native';
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ViewContainer from '../../components/ViewContainer'
 import StatusbarBackground from '../../components/StatusbarBackground'
 import Register from './Register'
@@ -53,7 +57,7 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            status: ''
+            loading: false
         };
 
         this._login = this._login.bind(this);
@@ -61,16 +65,29 @@ export default class Login extends Component {
     }
 
     _login = () => {
-        firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
-            // Handle errors here
-            console.log(error.code);
-            console.log(error.message);
+        this.setState({
+            loading: true
         });
-
-        this.props.navigator.push({
-            component: Discover,
-            title: 'Browse',
-            navigationBarHidden: true
+        // Log in and display an alert to tell the user what happened.
+        firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password
+        ).then((userData) =>
+            {
+                this.setState({
+                    loading: false
+                });
+                AsyncStorage.setItem('userData', JSON.stringify(userData));
+                this.props.navigator.push({
+                    component: Discover,
+                    title: 'Browse',
+                    navigationBarHidden: true
+                });
+            }
+        ).catch((error) =>
+        {
+            this.setState({
+                loading: false
+            });
+            AlertIOS.alert('Login Failed. Please try again');
         });
     };
 
@@ -90,51 +107,57 @@ export default class Login extends Component {
             <ViewContainer>
                 <StatusbarBackground />
                 <Image source={require('../../resources/portrait.jpg')} style={styles.viewImage}>
-                    <View style={styles.logo}>
-                        <Image style={{width: 258, height: 192}} source={require('../../resources/Logo.jpg')}/>
-                    </View>
-                    <TextInput
-                        style={styles.textInput}
-                        autoCapitalize='none'
-                        onChangeText={(text) => this.setState({email: text})}
-                        value={this.state.email}
-                        placeholder='EMAIL'
-                        placeholderTextColor='white'
-                        autoCorrect={false}
-                        onFocus={this.onFocus}
-                        returnKeyType='next'
-                        keyboardAppearance='dark'
-                    />
-                    <TextInput
-                        style={styles.textInput}
-                        onChangeText={(text) => this.setState({password: text})}
-                        value={this.state.password}
-                        placeholder='PASSWORD'
-                        placeholderTextColor= 'white'
-                        secureTextEntry={true}
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        returnKeyType='go'
-                        keyboardAppearance='dark'
-                    />
-                    {/*<Icon name='facebook-official' size={50} color='blue' style={styles.icon}/>*/}
-                    {/*<Button*/}
-                    {/*onPress={this._fbAuth}*/}
-                    {/*title='Login with Facebook'*/}
-                    {/*/>*/}
+                    <KeyboardAwareScrollView
+                        resetScrollToCoords={{ x: 0, y: 0 }}
+                        scrollEnabled={false}
+                    >
+                        <View style={styles.logo}>
+                            <Image style={{width: 258, height: 192}} source={require('../../resources/Logo.jpg')}/>
+                        </View>
+                        <TextInput
+                            style={styles.textInput}
+                            autoCapitalize='none'
+                            onChangeText={(text) => this.setState({email: text})}
+                            value={this.state.email}
+                            placeholder='EMAIL'
+                            placeholderTextColor='white'
+                            autoCorrect={false}
+                            onFocus={this.onFocus}
+                            returnKeyType='next'
+                            keyboardAppearance='dark'
+                        />
+                        <TextInput
+                            style={styles.textInput}
+                            onChangeText={(text) => this.setState({password: text})}
+                            value={this.state.password}
+                            placeholder='PASSWORD'
+                            placeholderTextColor= 'white'
+                            secureTextEntry={true}
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            returnKeyType='go'
+                            keyboardAppearance='dark'
+                        />
+                        {/*<Icon name='facebook-official' size={50} color='blue' style={styles.icon}/>*/}
+                        {/*<Button*/}
+                        {/*onPress={this._fbAuth}*/}
+                        {/*title='Login with Facebook'*/}
+                        {/*/>*/}
 
-                    <View style={styles.login}>
-                        <TouchableOpacity style={styles.loginButton} onPress={this._login}>
-                            <Text style={styles.loginButtonText}>LOG IN</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.register}>
-                        <TouchableOpacity style={styles.registerButton} onPress={this._register}>
-                            <Text style={styles.registerButtonText}>create account</Text>
-                        </TouchableOpacity>
-                    </View>
+                        <View style={styles.login}>
+                            <TouchableOpacity style={styles.loginButton} onPress={this._login}>
+                                <Text style={styles.loginButtonText}>LOG IN</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.register}>
+                            <TouchableOpacity style={styles.registerButton} onPress={this._register}>
+                                <Text style={styles.registerButtonText}>create account</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </KeyboardAwareScrollView>
                 </Image>
             </ViewContainer>
         );
     }
 }
+

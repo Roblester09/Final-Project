@@ -1,36 +1,15 @@
 {
-	"name": "socialapp",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"crypto": "0.0.3",
-		"crypto-md5": "^1.0.0",
-		"firebase": "^4.2.0",
-		"lodash": "^4.17.4",
-		"react": "16.0.0-alpha.12",
-		"react-native": "0.46.3",
-		"react-native-deprecated-custom-components": "^0.1.1",
-		"react-native-facebook-login": "^1.5.0",
-		"react-native-fbsdk": "^0.6.0",
-		"react-native-fontawesome": "^5.7.0",
-		"react-native-pagecontrol": "^3.0.1",
-		"react-native-router-flux": "^4.0.0-beta.15",
-		"react-native-svg": "^5.3.0",
-		"react-native-svg-uri": "^1.2.0",
-		"react-native-vector-icons": "^4.2.0",
-		"watchman": "^0.1.8"
-	},
-	"devDependencies": {
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "2.1.0",
-		"jest": "20.0.4",
-		"react-test-renderer": "16.0.0-alpha.12"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "react-marvel",
+  "version": "0.0.0",
+  "description": "Hello Expo!",
+  "author": null,
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "dependencies": {
+    "expo": "^19.0.1",
+    "firebase": "^4.2.0",
+    "react": "16.0.0-alpha.12",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-19.0.0.tar.gz",
+    "react-native-keyboard-aware-scroll-view": "^0.3.0"
+  }
 }
